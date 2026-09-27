@@ -464,7 +464,6 @@ body.light-mode #locationBtn {
     height: 8px;
 }
 
-
 /* =========================
    CLOCK HANDS
 ========================= */
@@ -610,6 +609,7 @@ body.light-mode #locationBtn {
 /* =========================
    RESPONSIVE
 ========================= */
+
 @media (max-width: 800px) {
 
     body {
@@ -619,7 +619,7 @@ body.light-mode #locationBtn {
     }
 
     .clock {
-        width: 340px;
+        width: 320px;
         height: 360px;
         margin-top: 20px;
         padding: 0;
@@ -640,13 +640,13 @@ body.light-mode #locationBtn {
 @media (max-width: 400px) {
 
     .clock {
-        width: 300px;
-        height: 300px;
+        width: 340px;
+        height: 360px;
     }
 
     .analog-clock {
-        width: 200px;
-        height: 200px;
+        width: 280px;
+        height: 280px;
     }
 
     .weather {
@@ -721,3 +721,5 @@ body.light-mode .center-dot {
 body.light-mode .number {
     color: #5c461f;
 }
+
+
