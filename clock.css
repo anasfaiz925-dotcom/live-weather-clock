@@ -1,0 +1,723 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    background: radial-gradient(circle at center, #243b55, #0f172a);
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   MAIN CLOCK
+========================= */
+
+.clock {
+    position: relative;
+
+    width: 380px;
+    height: 380px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 2px solid rgba(255, 255, 255, 0.25);
+
+    transform:
+        perspective(800px)
+        rotateX(8deg)
+        translateZ(20px);
+
+    transform-style: preserve-3d;
+
+    box-shadow:
+        0 25px 40px rgba(0, 0, 0, 0.45),
+        0 50px 80px rgba(0, 0, 0, 0.25),
+        0 35px 50px rgba(0, 0, 0, 0.35),
+        0 60px 90px rgba(0, 0, 0, 0.20),
+        inset 0 0 35px rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    animation: floating 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.clock:hover {
+    animation-play-state: paused;
+
+    transform:
+        perspective(800px)
+        rotateX(4deg)
+        translateZ(30px)
+        translateY(-15px)
+        scale(1.04);
+
+    box-shadow:
+        0 40px 60px rgba(0, 0, 0, 0.50),
+        0 75px 110px rgba(0, 0, 0, 0.30),
+        inset 0 0 40px rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================
+   GROUND SHADOW
+========================= */
+
+.clock::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 35px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border-radius: 50%;
+
+    bottom: -65px;
+
+    filter: blur(15px);
+
+    transform: rotateX(70deg);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+#date {
+    margin: 15px 0 25px;
+
+    font-size: 16px;
+
+    color: #d8f7ff;
+
+    text-align: center;
+}
+
+
+/* =========================
+   FORMAT BUTTON
+========================= */
+
+#formatBtn {
+    padding: 10px 22px;
+
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid #00c8ff;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+#formatBtn:hover {
+    background: #00c8ff;
+
+    color: #0f172a;
+
+    box-shadow: 0 0 20px #00c8ff;
+}
+
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+#themeBtn {
+    margin-top: 12px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#themeBtn:hover {
+    transform: rotate(20deg) scale(1.1);
+
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* =========================
+   FLOATING
+========================= */
+
+@keyframes floating {
+
+    0% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -8px;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+body.light-mode {
+    background: radial-gradient(circle at center, #fff8e7, #f3dfb3);
+    color: #2b2118;
+}
+
+body.light-mode .clock {
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(160, 120, 50, 0.35);
+    box-shadow:
+        0 25px 40px rgba(120, 90, 30, 0.18),
+        inset 0 0 35px rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .analog-clock {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(160, 120, 50, 0.45);
+    box-shadow:
+        inset 0 0 25px rgba(180, 140, 60, 0.12),
+        0 0 25px rgba(180, 140, 60, 0.12);
+}
+
+body.light-mode .tick-dot {
+    background: #5c461f;
+    box-shadow: none;
+}
+
+body.light-mode #date {
+    color: #5c461f;
+}
+
+body.light-mode #formatBtn {
+    color: #5c461f;
+    border-color: #b88a2a;
+}
+
+body.light-mode #themeBtn {
+    background: rgba(255, 255, 255, 0.7);
+    color: #5c461f;
+    border-color: rgba(160, 120, 50, 0.4);
+}
+
+body.light-mode .weather {
+    background: rgba(255, 255, 255, 0.65);
+    color: #2b2118;
+}
+
+body.light-mode .weather {
+    background: rgba(255, 255, 255, 0.65);
+    color: #2b2118;
+}
+
+
+/* =========================
+   WEATHER CARD
+========================= */
+
+.weather {
+    width: 300px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 20px 35px rgba(0, 0, 0, 0.30),
+        0 35px 60px rgba(0, 0, 0, 0.20),
+        inset 0 0 25px rgba(255, 255, 255, 0.06);
+
+    color: white;
+
+    transition: 0.4s ease;
+}
+
+
+.weather:hover {
+    transform: translateY(-8px) scale(1.02);
+
+    box-shadow:
+        0 30px 50px rgba(0, 0, 0, 0.40),
+        0 50px 80px rgba(0, 0, 0, 0.25),
+        inset 0 0 30px rgba(255, 255, 255, 0.10);
+}
+
+
+.weather h2 {
+    margin: 0 0 10px;
+
+    font-size: 22px;
+
+    letter-spacing: 1px;
+}
+
+
+#temperature {
+    margin: 5px 0;
+
+    font-size: 36px;
+
+    font-weight: bold;
+
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.35);
+}
+
+
+#condition {
+    margin: 5px 0 15px;
+
+    color: #d8f7ff;
+
+    min-height: 20px;
+}
+
+
+#humidity,
+#wind {
+    margin: 6px;
+
+    font-size: 14px;
+}
+
+
+.weather p {
+    line-height: 1.5;
+}
+
+
+#weatherIcon {
+    font-size: 50px;
+
+    margin: 5px 0 10px;
+
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+
+    transition: 0.3s ease;
+}
+
+
+.weather:hover #weatherIcon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+
+/* WEATHER LIGHT MODE */
+
+body.light-mode .weather {
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 248, 220, 0.60)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    color: #78350f;
+
+    box-shadow:
+        0 20px 35px rgba(120, 75, 20, 0.20),
+        0 40px 65px rgba(120, 75, 20, 0.15),
+        inset 0 0 25px rgba(255, 255, 255, 0.8);
+}
+
+
+body.light-mode .weather #condition {
+    color: #92400e;
+}
+
+body.light-mode #locationInput {
+    background: #ffffff;
+    color: #2b2118;
+    border: 1px solid #b88a2a;
+}
+
+body.light-mode #locationInput::placeholder {
+    color: #77705f;
+}
+
+body.light-mode #locationBtn {
+    background: #b88a2a;
+    color: white;
+}
+
+
+/* =========================
+   ANALOG CLOCK
+========================= */
+
+.analog-clock {
+    position: relative;
+
+    width: 240px;
+    height: 240px;
+
+    flex-shrink: 0;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, 0.08),
+        0 0 25px rgba(0, 200, 255, 0.12);
+
+    transform: translateZ(30px);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   DOTS
+========================= */
+
+.ticks {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+.tick-dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+
+    box-shadow:
+        0 0 4px rgba(255, 255, 255, 0.9),
+        0 0 8px rgba(0, 200, 255, 0.6);
+
+    z-index: 2;
+}
+.tick-dot:nth-child(5n + 1) {
+    width: 8px;
+    height: 8px;
+}
+
+
+/* =========================
+   CLOCK HANDS
+========================= */
+
+.hand {
+    position: absolute;
+
+    left: 50%;
+    bottom: 50%;
+
+    transform-origin: bottom center;
+
+    border-radius: 10px;
+
+    z-index: 3;
+}
+
+
+.hour-hand {
+    width: 7px;
+    height: 55px;
+
+    background: white;
+}
+
+
+.minute-hand {
+    width: 5px;
+    height: 75px;
+
+    background: #d8f7ff;
+}
+
+
+.second-hand {
+    width: 2px;
+    height: 90px;
+
+    background: #00c8ff;
+}
+
+
+/* =========================
+   CENTER DOT
+========================= */
+
+.center-dot {
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #00c8ff;
+
+    box-shadow: 0 0 12px #00c8ff;
+
+    z-index: 5;
+}
+
+
+/* =========================
+   CLOCK NUMBERS
+========================= */
+
+.number {
+    position: absolute;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    text-shadow: 0 0 8px rgba(0, 200, 255, 0.5);
+
+    z-index: 4;
+}
+
+
+.number-12 {
+    top: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+.number-3 {
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+
+.number-6 {
+    bottom: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+.number-9 {
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+
+/* =========================
+   AM / PM
+========================= */
+
+#ampm {
+    position: absolute;
+
+    top: 62%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    z-index: 4;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 800px) {
+
+    body {
+        padding: 40px 15px;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .clock {
+        width: 340px;
+        height: 360px;
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .analog-clock {
+        width: 220px;
+        height: 220px;
+        margin-top: 0;
+    }
+
+    .weather {
+        width: 300px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .clock {
+        width: 300px;
+        height: 300px;
+    }
+
+    .analog-clock {
+        width: 200px;
+        height: 200px;
+    }
+
+    .weather {
+        width: 90%;
+    }
+}
+#locationInput {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+
+    outline: none;
+}
+
+#locationInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#locationBtn {
+    padding: 9px 18px;
+margin-top: 5px;
+    border: none;
+    border-radius: 20px;
+
+    background: #00c8ff;
+    color: #07111f;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#locationBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
+}
+
+#locationBtn:disabled {
+    opacity: 0.15;
+    cursor: not-allowed;
+}
+
+body.light-mode .weather {
+    background: rgba(255, 255, 255, 0.65);
+    color: #2b2118;
+}
+
+body.light-mode #ampm {
+    color: #5c461f;
+    font-weight: bold;
+}
+body.light-mode .hand {
+    background: #5c461f;
+}
+
+body.light-mode .second-hand {
+    background: #b8860b;
+}
+
+body.light-mode .center-dot {
+    background: #5c461f;
+}
+
+body.light-mode .number {
+    color: #5c461f;
+}

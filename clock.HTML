@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Weather Clock</title>
+    <link rel="stylesheet" href="clock.css">
+</head>
+
+<body>
+
+    <div class="clock">
+
+        <div class="analog-clock">
+
+            <div class="ticks"></div>
+
+            <div class="number number-12">12</div>
+            <div class="number number-3">3</div>
+            <div class="number number-6">6</div>
+            <div class="number number-9">9</div>
+
+            <div class="hand hour-hand"></div>
+            <div class="hand minute-hand"></div>
+            <div class="hand second-hand"></div>
+
+            <div class="center-dot"></div>
+
+            <div id="ampm">AM</div>
+
+        </div>
+
+        <p id="date"></p>
+
+        <button id="formatBtn">24 Hour</button>
+
+        <button id="themeBtn">🌙</button>
+
+    </div>
+
+
+    <!-- WEATHER -->
+    
+    <div class="weather">
+<input
+    type="text"
+    id="locationInput"
+    placeholder="Enter city"
+>
+
+<button id="locationBtn">
+    Search
+</button>
+
+
+        <h2 id="city">Weather</h2>
+
+        <p id="temperature">--°C</p>
+
+        <div id="weatherIcon">🌤️</div>
+
+        <p id="condition">Loading...</p>
+
+        <p id="humidity">Humidity: --%</p>
+
+        <p id="wind">Wind: -- km/h</p>
+
+    </div>
+
+
+    <script src="clock.js"></script>
+
+</body>
+</html>
